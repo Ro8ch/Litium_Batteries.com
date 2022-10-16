@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "billowapp/payfast": "^0.4.0",
         "bumbummen99/shoppingcart": "^2.8",
         "cartalyst/stripe-laravel": "^13.0",
         "fideloper/proxy": "^4.0",

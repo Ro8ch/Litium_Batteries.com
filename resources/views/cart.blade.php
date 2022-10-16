@@ -62,7 +62,7 @@
                     </div>
                     <div class="col-md-3 offset-md-1">
                         <p class="text-right light-text">Subtotal &nbsp; &nbsp;${{ format(Cart::subtotal()) }}</p>
-                        <p class="text-right light-text">Tax(21%) &nbsp; &nbsp; ${{ format(Cart::tax()) }}</p>
+                        <p class="text-right light-text">Tax(15%) &nbsp; &nbsp; ${{ format(Cart::tax()) }}</p>
                         <p class="text-right">Total &nbsp; &nbsp; ${{ format(Cart::total()) }}</p>
                     </div>
                 </div>

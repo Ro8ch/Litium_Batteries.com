@@ -27,6 +27,12 @@ Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
 Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
 Route::get('/guest-checkout', 'CheckoutController@index')->name('checkout.guest');
 
+// Payment
+Route::get('confirmpayment', 'PaymentController@confirmpayment')->name('confirmpayment');
+Route::get('/payfast/success','PaymentController@success')->name('payment.success');
+Route::get('/payfast/cancel','PaymentController@cancel')->name('payment.cancel');
+
+
 // coupon
 Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
 Route::delete('/coupon/', 'CouponsController@destroy')->name('coupon.destroy');

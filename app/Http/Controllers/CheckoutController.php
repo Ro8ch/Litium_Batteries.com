@@ -105,7 +105,6 @@ class CheckoutController extends Controller
             'billing_province' => $request->province,
             'billing_postalcode' => $request->postal_code,
             'billing_phone' => $request->phone,
-            'billing_name_on_card' => $request->name_on_card,
             'billing_discount' => $this->getNumbers()->get('discount'),
             'billing_discount_code' => $this->getNumbers()->get('code'),
             'billing_subtotal' => $this->getNumbers()->get('newSubtotal'),

@@ -52,16 +52,8 @@
                         <input type="text" name="phone" class="form-control my-input" required>
                     </div>
                 </div>
-                <h2 style="margin-top:1em; margin-bottom:1em;">Payment details</h2>
-                <div class="form-group">
-                    <label for="name_on_card" class="light-text">Name on card</label>
-                    <input type="text" name="name_on_card" class="form-control my-input" required>
-                </div>
-                <div class="form-group">
-                    <label for="credit_card" class="light-text">Credit Card</label>
-                    <input type="text" name="credit_card" class="form-control my-input" required>
-                </div>
-                <button type="submit" class="btn btn-success custom-border-success btn-block">Complete Order</button>
+                <h2 style="margin-top:1em; margin-bottom:1em;">Pay here:</h2>
+                <button type="submit" class="btn btn-success custom-border-success btn-block">{{ route('confirmpayment') }}</button>
             </form>
         </div>
         <div class="col-md-5 offset-md-1">

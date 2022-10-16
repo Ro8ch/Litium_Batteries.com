@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "158c62b1cc3e2c36627f5d68492f8d3e",
+    "content-hash": "211e582bf71042971822e3abed349925",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -71,6 +71,105 @@
                 "source": "https://github.com/arrilot/laravel-widgets/tree/3.13.1"
             },
             "time": "2020-09-20T19:56:38+00:00"
+        },
+        {
+            "name": "billowapp/payfast",
+            "version": "0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/billowapp/payfast.git",
+                "reference": "9679bfba42c221ca202ca768ce5d49f46851041f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/billowapp/payfast/zipball/9679bfba42c221ca202ca768ce5d49f46851041f",
+                "reference": "9679bfba42c221ca202ca768ce5d49f46851041f",
+                "shasum": ""
+            },
+            "require": {
+                "billowapp/show-me-the-money": "^0.1.2|^0.2|^0.4",
+                "illuminate/http": "^5.4|^6.0|^7.0|^8.0",
+                "illuminate/support": "^5.4|^6.0|^7.0|^8.0"
+            },
+            "require-dev": {
+                "symfony/var-dumper": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Billow\\PayfastServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Billow\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Warren Hansen",
+                    "email": "warren@billow.co.za"
+                }
+            ],
+            "description": "Laravel 5.4+|6+|7+|8+ package for processing ITN payments through payfast.co.za",
+            "keywords": [
+                "laravel",
+                "package",
+                "payfast"
+            ],
+            "support": {
+                "issues": "https://github.com/billowapp/payfast/issues",
+                "source": "https://github.com/billowapp/payfast/tree/0.4.0"
+            },
+            "time": "2021-08-10T11:34:42+00:00"
+        },
+        {
+            "name": "billowapp/show-me-the-money",
+            "version": "0.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/billowapp/show-me-the-money.git",
+                "reference": "70409331d4ca1cdcd458589cdbd12105f0bca599"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/billowapp/show-me-the-money/zipball/70409331d4ca1cdcd458589cdbd12105f0bca599",
+                "reference": "70409331d4ca1cdcd458589cdbd12105f0bca599",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/inflector": "^1.1|^2.0",
+                "illuminate/support": "^5.2|^6.0|^7.0|^8.0|^9.0",
+                "php": "^7.0|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Billow\\Utilities\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Warren Hansen",
+                    "email": "warren@billow.co.za"
+                }
+            ],
+            "description": "Super simple money class for laravel and we mean simple.",
+            "support": {
+                "issues": "https://github.com/billowapp/show-me-the-money/issues",
+                "source": "https://github.com/billowapp/show-me-the-money/tree/0.4.3"
+            },
+            "time": "2022-04-04T05:31:17+00:00"
         },
         {
             "name": "brick/math",
@@ -9281,5 +9380,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }

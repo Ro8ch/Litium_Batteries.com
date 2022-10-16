@@ -54,9 +54,9 @@
                         <!-- end single product -->
                     @endforeach
                 </div>
-                <div class="text-center">
-                    {{ $products->appends(request()->input())->links() }}
-                </div>
+                <!--<div class="text-center">-->
+                <!--    {{ $products->appends(request()->input())->links() }}-->
+                <!--</div>-->
                 <!-- end products row -->
             </div>
             <!-- end products section -->
