@@ -33,10 +33,6 @@ class PermissionsTableSeederCustom extends Seeder
 
         Permission::generateFor('coupons');
 
-        Permission::generateFor('tags');
-
-        Permission::generateFor('product_tag');
-
         Permission::generateFor('orders');
 
         Permission::generateFor('country_visits');

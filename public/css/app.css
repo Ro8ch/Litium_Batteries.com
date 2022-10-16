@@ -13908,7 +13908,7 @@ a.text-dark:focus {
 
 body {
   font-family: "Merienda One", cursive, sans-serif;
-  background-color: #eee;
+  background-color: #252525;
 }
 
 nav {
@@ -13945,11 +13945,13 @@ button {
   margin-right: 1em;
   margin-top: 1em;
   margin-bottom: 1em;
+  color: #343a40;
 }
 
 .header {
   font-size: 1.7em;
   margin-bottom: 2em;
+  color: white;
 }
 
 footer {
@@ -14123,7 +14125,7 @@ li a:hover {
 }
 
 .hero-image {
-  background-image: url(/images/cover.jpg?41bd003e01af6b97b8ffcd6c74090721);
+  background-image: url(/images/cover.jpg?ea896c721c2ac667b807c87fda0b4a6d);
   display: flex;
   flex-direction: column;
   min-height: 28em;

@@ -17,7 +17,6 @@ class DataRowsTableSeederCustom extends Seeder
         $productDataType = DataType::where('slug', 'products')->firstOrFail();
         $categoryDataType = DataType::where('slug', 'category')->firstOrFail();
         $couponDataType = DataType::where('slug', 'coupons')->firstOrFail();
-        $tagDataType = DataType::where('slug', 'tags')->firstOrFail();
         $orderDataType = DataType::where('slug', 'orders')->firstOrFail();
 
         // START USER SECTION
@@ -239,32 +238,6 @@ class DataRowsTableSeederCustom extends Seeder
             ])->save();
         }
 
-        $dataRow = $this->dataRow($productDataType, 'product_belongstomany_tag_relationship');
-        if (!$dataRow->exists) {
-            $dataRow->fill([
-                'type'         => 'relationship',
-                'display_name' => 'Tags',
-                'required'     => 0,
-                'browse'       => 1,
-                'read'         => 1,
-                'edit'         => 1,
-                'add'          => 1,
-                'delete'       => 1,
-                'details'      => [
-                    'model'       => 'App\\Tag',
-                    'table'       => 'tags',
-                    'type'        => 'belongsToMany',
-                    'column'      => 'id',
-                    'key'         => 'id',
-                    'label'       => 'name',
-                    'pivot_table' => 'product_tag',
-                    'pivot'       => '1',
-                    'taggable'    => 'on',
-                ],
-                'order'        => 13,
-            ])->save();
-        }
-
         $dataRow = $this->dataRow($productDataType, 'created_at');
         if (!$dataRow->exists) {
             $dataRow->fill([
@@ -365,7 +338,6 @@ class DataRowsTableSeederCustom extends Seeder
                     'label'       => 'name',
                     'pivot_table' => 'category',
                     'pivot'       => '0',
-                    'taggable'    => '0',
                 ],
                 'order'        => 4,
             ])->save();
@@ -512,115 +484,6 @@ class DataRowsTableSeederCustom extends Seeder
         }
 
         // END OF COUPON SECTION //
-
-        // START OF TAGS SECTION //
-
-
-        $dataRow = $this->dataRow($tagDataType, 'id');
-        if (!$dataRow->exists) {
-            $dataRow->fill([
-                'type'         => 'hidden',
-                'display_name' => 'Id',
-                'required'     => 1,
-                'browse'       => 0,
-                'read'         => 0,
-                'edit'         => 0,
-                'add'          => 0,
-                'delete'       => 0,
-                'order'        => 1,
-            ])->save();
-        }
-
-        $dataRow = $this->dataRow($tagDataType, 'name');
-        if (!$dataRow->exists) {
-            $dataRow->fill([
-                'type'         => 'text',
-                'display_name' => 'Name',
-                'required'     => 1,
-                'browse'       => 1,
-                'read'         => 1,
-                'edit'         => 1,
-                'add'          => 1,
-                'delete'       => 1,
-                'details'      => json_decode('{"rules":"unique:tags,name"}'),
-                'order'        => 2,
-            ])->save();
-        }
-
-        $dataRow = $this->dataRow($tagDataType, 'slug');
-        if (!$dataRow->exists) {
-            $dataRow->fill([
-                'type'         => 'text',
-                'display_name' => 'Slug',
-                'required'     => 1,
-                'browse'       => 1,
-                'read'         => 1,
-                'edit'         => 1,
-                'add'          => 1,
-                'delete'       => 1,
-                'details'      => json_decode('{"rules":"unique:tags,slug"}'),
-                'order'        => 3,
-            ])->save();
-        }
-
-
-        $dataRow = $this->dataRow($tagDataType, 'tag_belongstomany_product_relationship');
-        if (!$dataRow->exists) {
-            $dataRow->fill([
-                'type'         => 'relationship',
-                'display_name' => 'Products',
-                'required'     => 0,
-                'browse'       => 1,
-                'read'         => 1,
-                'edit'         => 1,
-                'add'          => 1,
-                'delete'       => 1,
-                'details'      => [
-                    'model'       => 'App\\Product',
-                    'table'       => 'products',
-                    'type'        => 'belongsToMany',
-                    'column'      => 'id',
-                    'key'         => 'id',
-                    'label'       => 'name',
-                    'pivot_table' => 'product_tag',
-                    'pivot'       => '1',
-                    'taggable'    => '0',
-                ],
-                'order'        => 4,
-            ])->save();
-        }
-
-        $dataRow = $this->dataRow($tagDataType, 'create_at');
-        if (!$dataRow->exists) {
-            $dataRow->fill([
-                'type'         => 'timestamp',
-                'display_name' => __('voyager::seeders.data_rows.create_at'),
-                'required'     => 0,
-                'browse'       => 0,
-                'read'         => 0,
-                'edit'         => 0,
-                'add'          => 0,
-                'delete'       => 0,
-                'order'        => 5,
-            ])->save();
-        }
-
-        $dataRow = $this->dataRow($tagDataType, 'updated_at');
-        if (!$dataRow->exists) {
-            $dataRow->fill([
-                'type'         => 'timestamp',
-                'display_name' => __('voyager::seeders.data_rows.updated_at'),
-                'required'     => 0,
-                'browse'       => 0,
-                'read'         => 0,
-                'edit'         => 0,
-                'add'          => 0,
-                'delete'       => 0,
-                'order'        => 6,
-            ])->save();
-        }
-
-        // END OF TAGS SECTION //
 
         // START ORDERS SECTION //
 

@@ -135,22 +135,6 @@ class MenuItemsTableSeederCustom extends Seeder
 
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
-            'title'   => 'Tags',
-            'url'     => '',
-            'route'   => 'voyager.tags.index',
-        ]);
-        if (!$menuItem->exists) {
-            $menuItem->fill([
-                'target'     => '_self',
-                'icon_class' => 'voyager-tag',
-                'color'      => null,
-                'parent_id'  => null,
-                'order'      => 18,
-            ])->save();
-        }
-
-        $menuItem = MenuItem::firstOrNew([
-            'menu_id' => $menu->id,
             'title'   => 'Orders',
             'url'     => '',
             'route'   => 'voyager.orders.index',

@@ -1,6 +1,6 @@
 <div class="suggestions">
     <div class="container" style="padding-top: 3em">
-        <h3 class="lead" style="margin-bottom: 2em">You might also like</h3>
+        <h3 class="lead" style="margin-bottom: 2em">You might also like:</h3>
         <!-- start products row -->
         <div class="row">
             @foreach ($mightLike as $product)

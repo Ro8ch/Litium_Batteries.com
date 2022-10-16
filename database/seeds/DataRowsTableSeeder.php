@@ -182,7 +182,6 @@ class DataRowsTableSeeder extends Seeder
                     'label'       => 'display_name',
                     'pivot_table' => 'user_roles',
                     'pivot'       => '1',
-                    'taggable'    => '0',
                 ],
                 'order'        => 11,
             ])->save();

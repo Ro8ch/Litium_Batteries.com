@@ -29,10 +29,6 @@ class Product extends Model
         return $this->belongsTo('App\Category');
     }
 
-    public function tags() {
-        return $this->belongsToMany('App\Tag');
-    }
-
     public function toSearchableArray() {
         $array = $this->toArray();
         $extraFields = [

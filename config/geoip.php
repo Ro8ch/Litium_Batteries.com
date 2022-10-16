@@ -116,18 +116,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Cache Tags
-    |--------------------------------------------------------------------------
-    |
-    | Cache tags are not supported when using the file or database cache
-    | drivers in Laravel. This is done so that only locations can be cleared.
-    |
-    */
-
-    'cache_tags' => null,
-
-    /*
-    |--------------------------------------------------------------------------
     | Cache Expiration
     |--------------------------------------------------------------------------
     |

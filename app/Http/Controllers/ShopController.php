@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
-use App\Tag;
 
 class ShopController extends Controller
 {
@@ -17,10 +16,6 @@ class ShopController extends Controller
             $category = Category::where('slug', request()->category)->get()->first();
             $products = Product::where('category_id', $category->id);
             $categoryName = $category->name;
-        } else if(request()->tag) {
-            $tag = Tag::where('slug', request()->tag)->get()->first();
-            $products = $tag->products();
-            $tagName = $tag->name;
         } else {
             $products = Product::where('featured', true);
             $categoryName = 'Featured';
@@ -33,13 +28,10 @@ class ShopController extends Controller
             $products = $products->inRandomOrder()->paginate($pagination);
         }
         $categories = Category::all();
-        $tags = Tag::all();
         return view('shop')->with([
             'products' => $products,
             'categories'=> $categories,
-            'tags'=> $tags,
-        'categoryName' => $categoryName ?? null,
-            'tagName' => $tagName ?? null
+        'categoryName' => $categoryName ?? null
             ]);
     }
 
@@ -59,7 +51,9 @@ class ShopController extends Controller
     public function search($query) {
         if(strlen($query) < 3) return back()->with('error', 'minimum query length is 3');
         $products = Product::search($query)->paginate(10);
-        return view('search')->with(['products' => $products, 'query' => $query]);
+        return view('search')->with([
+            'products' => $products, 
+            'query' => $query]);
     }
     
 
