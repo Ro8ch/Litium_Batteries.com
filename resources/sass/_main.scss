@@ -1,7 +1,7 @@
 
 body {
     font-family: 'Merienda One', cursive, sans-serif;
-    background-color:rgb(37,37,37);
+    background-color:rgb(95,95,95);
 }
 
 nav {
@@ -15,8 +15,8 @@ nav {
 }
 
 .custom-border-n {
-    border: 1px solid black;
-    color: #222;
+    border: 1px solid white;
+    color: gray;
     border-radius: 0;
     margin-top:1em;
 }
@@ -67,6 +67,7 @@ footer {
 
 .content-head {
     margin-bottom: 2em;
+    color: white;
 }
 
 .card-body {
@@ -81,7 +82,7 @@ a.custom-card:hover {
 }
 
 .light-text {
-    color: #444;
+    color: lightgray;
 }
 
 .suggestions {
