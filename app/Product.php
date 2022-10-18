@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Nicolaslopezj\Searchable\SearchableTrait;
-// use Laravel\Scout\Searchable;
+use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
