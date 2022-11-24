@@ -12,7 +12,7 @@ return
 |
 */
 [
-    'testing'  => true, // Set to false when in production.
+    'testing'  => env('PF_SANDBOX'), // Set to false when in production.
     'merchant' => [
         'merchant_id'  => env('PF_MERCHANT_ID', '10000100'),                        // TEST Credentials. Replace with your merchant ID from Payfast.
         'merchant_key' => env('PF_MERCHANT_KEY', '46f0cd694581a'),                  // TEST Credentials. Replace with your merchant key from Payfast.

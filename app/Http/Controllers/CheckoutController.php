@@ -11,6 +11,7 @@ use Cartalyst\Stripe\Stripe;
 use Mail;
 use App\Mail\OrderPlaced;
 use App\Product;
+use FintechSystems\Payfast\Facades\Payfast;
 
 class CheckoutController extends Controller
 {
@@ -46,6 +47,7 @@ class CheckoutController extends Controller
 
         try {
             // $stripe = Stripe::make('api_key');
+ 
             // $charge = $stripe->charges()->create([
             //     'amount' => Cart::instance('default')->total(),
             //     'currency' => 'USD',
@@ -58,12 +60,14 @@ class CheckoutController extends Controller
             //         'discount' => session()->has('coupon') ? collect(session('coupon')->toJson) : null,
             //     ],
             // ]);
+           return Payfast::payment(Cart::instance('default')->total(), 'oRDER #1');
+
 
             $order = $this->insertIntoOrdersTable($request, null);
 
             // SUCCESSFUL
             $this->decreaseQuantities();
-            Mail::to('me@me.com')->send(new OrderPlaced($order));
+            Mail::to(env('PAYFAST_MAIL'))->send(new OrderPlaced($order));
             Cart::instance('default')->destroy();
             session()->forget('coupon');
             return redirect()->route('welcome')->with('success', 'Your order is completed successfully!');
