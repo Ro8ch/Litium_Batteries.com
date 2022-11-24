@@ -42,6 +42,9 @@ Auth::routes();
 Route::get('/login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('/login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
+// How to route
+Route::get('/how_to', 'how_toController@index')->name('how_to.index');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin'], function () {

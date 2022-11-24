@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
+            <div class="Logo-image"></div>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -48,6 +48,16 @@
                 </div>
             </li>
             @endguest
+            <li class="nav-item">
+                <a class="nav-link {{ request()->route()->getName() == 'cart.index' ? 'active': '' }}" href="{{ route('cart.index') }}">
+                    Cart 
+                @if (Cart::instance('default')->count() > 0)
+                    <span class="badge badge-primary">
+                        {{ Cart::instance('default')->count() }}
+                    </span>
+                @endif
+                </a>
+            </li>
         </ul>
     </div>
     </div>

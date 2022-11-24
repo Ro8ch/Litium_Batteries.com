@@ -24,7 +24,7 @@
             <h2 class="header" style="margin-top:1em">{{ $product->name }}</h2>
             <span class="badge badge-success" style="font-size: 1em">{{ $stockLevel }}</span>
             <p class="light-text">{{ $product->description }}</p>
-            <h3 class="light-text">$ {{ format($product->price) }}</h3>
+            <h3 class="light-text">R {{ format($product->price) }}</h3>
             <p class="light-text">Details:</p>
             <p class="light-text">{{ $product->details }}</p>
             @if ($product->quantity > 0)
