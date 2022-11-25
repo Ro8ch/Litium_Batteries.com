@@ -1,8 +1,10 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <a class="nav-brand" href="{{ url('/') }}">
+        <div>
+            <img src="{{ asset('Images/Logo-nav.png')}}" height= 63 width = 201>
+        </div>
+    </a>
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            <div class="Logo-image"></div>
-        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
