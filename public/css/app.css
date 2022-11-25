@@ -14052,7 +14052,7 @@ a.custom-card:hover {
 
 .summary {
   padding: 1em;
-  background-color: #ddd;
+  background-color: #2d313c;
 }
 
 .inline-form-button {
@@ -14127,6 +14127,10 @@ li a:hover {
 
 .filter-header {
   font-size: 1.2em;
+}
+
+.cart-font-color {
+  color: white;
 }
 
 .hero-image {

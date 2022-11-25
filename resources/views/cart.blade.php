@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-10 offset-md-1">
             @if (Cart::instance('default')->count() > 0)
-            <h3 class="lead mt-4">{{ Cart::instance('default')->count() }} items in the shopping cart</h3>
+            <h3 class="cart-font-color mt-4">{{ Cart::instance('default')->count() }} items in the shopping cart</h3>
             <table class="table table-responsive">
                 <tbody>
                     @foreach (Cart::instance('default')->content() as $item)
@@ -19,7 +19,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('shop.show', $item->model->slug) }}" class="text-decoration-none">
-                                    <h3 class="lead light-text">{{ $item->model->name }}</h3>
+                                    <h3 class="cart-font-color light-text">{{ $item->model->name }}</h3>
                                     <p class="light-text">{{ $item->model->details }}</p>
                                 </a>
                             </td>
@@ -42,12 +42,12 @@
                             </td>
                             <td class="">
                                 <select class='quantity' data-id='{{ $item->rowId }}' data-productQuantity='{{ $item->model->quantity }}'>
-                                    @for ($i = 1; $i < 10; $i++)
+                                    @for ($i = 1; $i < 100; $i++)
                                         <option class="option" value="{{ $i }}" {{ $item->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
                                     @endfor
                                 </select>
                             </td>
-                            <td>R{{ format($item->subtotal) }}</td>
+                            <td class="cart-font-color">R{{ format($item->subtotal) }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -63,7 +63,7 @@
                     <div class="col-md-3 offset-md-1">
                         <p class="text-right light-text">Subtotal &nbsp; &nbsp;R{{ format(Cart::subtotal()) }}</p>
                         <p class="text-right light-text">Tax(15%) &nbsp; &nbsp; R{{ format(Cart::tax()) }}</p>
-                        <p class="text-right">Total &nbsp; &nbsp; R{{ format(Cart::total()) }}</p>
+                        <p class="text-right cart-font-color">Total &nbsp; &nbsp; R{{ format(Cart::total()) }}</p>
                     </div>
                 </div>
             </div>
@@ -75,12 +75,12 @@
             </div>
             @else
             <div class="alert alert-info">
-                <h4 class="lead">No items in the cart <a class="btn custom-border-n" href="{{ route('shop.index') }}">Continue shopping</a></h4>
+                <h4 class="cart-font-color">No items in the cart <a class="btn custom-border-n" href="{{ route('shop.index') }}">Continue shopping</a></h4>
             </div>
             @endif
             <hr>
             @if (Cart::instance('saveForLater')->count() > 0)
-                <h3 class="lead">{{ Cart::instance('saveForLater')->count() }} item saved for later</h3>
+                <h3 class="cart-font-color">{{ Cart::instance('saveForLater')->count() }} item saved for later</h3>
                 <table class="table table-responsive">
                     <tbody>
                         @foreach (Cart::instance('saveForLater')->content() as $item)
@@ -91,7 +91,7 @@
                                     </a>
                                 <td>
                                     <a href="{{ route('shop.show', $item->model->slug) }}" class="text-decoration-none">
-                                        <h3 class="lead light-text">{{ $item->model->name }}</h3>
+                                        <h3 class="cart-font-color light-text">{{ $item->model->name }}</h3>
                                         <p class="light-text">{{ $item->model->details }}</p>
                                     </a>
                                 </td>
@@ -105,7 +105,7 @@
                                         Add to cart
                                     </button>
                                 </td>
-                                <td>R{{ format($item->model->price) }}</td>
+                                <td class= "cart-font-color">R{{ format($item->model->price) }}</td>
                             </tr>
                         @endforeach
                     </tbody>
