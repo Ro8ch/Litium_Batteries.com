@@ -26,7 +26,7 @@
             <!--<p class="light-text">{{ $product->description }}</p>-->
             <h3 class="light-text">R {{ format($product->price) }}</h3>
             <p class="light-text">Details:</p>
-            <p class="light-text">{{ $product->details }}</p>
+            <p class="light-text">{!! $product->details !!}</p>
             @if ($product->quantity > 0)
                 <p class="light-text">Quantity available:</p>
                 <p class="light-text">{{ $product->quantity }}</p>

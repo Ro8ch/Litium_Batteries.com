@@ -13,7 +13,12 @@
             <a href="{{ route('shop.index') }}">
                 <button class="btn custom-border my-2 my-sm-0">Shop</button>
             </a>
-            <button class="btn custom-border my-2 my-sm-0">Contact Us</button>
+            <!-- <button class="btn custom-border my-2 my-sm-0" onclick='scroll()'>Contact Us</button>
+            <script>
+                function scroll() {
+                    $('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
+                }
+            </script> -->
         </div>
     </div>
 </div>

@@ -7,9 +7,9 @@
     <div class="row">
         <div class="col-md-5 offset-md-1">
             <hr>
-            <h1 class="lead" style="font-size: 1.5em">Checkout</h1>
+            <h1 class="cart-font-color" style="font-size: 1.5em">Checkout</h1>
             <hr>
-            <h3 class="lead" style="font-size: 1.2em; margin-bottom: 1.6em;">Billing details</h3>
+            <h3 class="cart-font-color" style="font-size: 1.2em; margin-bottom: 1.6em; cart-font-color">Billing details</h3>
             <form action="{{ route('checkout.store') }}" method="POST">
                 @csrf()
                 <div class="form-group">
@@ -52,11 +52,11 @@
                         <input type="text" name="phone" class="form-control my-input" required>
                     </div>
                 </div>
-                <h2 style="margin-top:1em; margin-bottom:1em;">Pay here:</h2>
+                <h2 style="margin-top:1em; margin-bottom:1em;" class= "cart-font-color">Pay here:</h2>
                 <button type="submit" class="btn btn-success custom-border-success btn-block">{{ route('confirmpayment') }}</button>
             </form>
         </div>
-        <div class="col-md-5 offset-md-1">
+        <div class="col-md-5 offset-md-1 cart-font-color">
             <hr>
             <h3>Your Order</h3>
             <hr>
@@ -71,13 +71,13 @@
                             <td>
                             <td>
                                 <a href="{{ route('shop.show', $item->model->slug) }}" class="text-decoration-none">
-                                    <h3 class="lead light-text">{{ $item->model->name }}</h3>
+                                    <h3 class="cart-font-color light-text">{{ $item->model->name }}</h3>
                                     <p class="light-text">{{ $item->model->details }}</p>
-                                    <h3 class="light-text lead text-small">R{{ $item->model->price }}</h3>
+                                    <h3 class="light-text cart-font-color text-small">R{{ $item->model->price }}</h3>
                                 </a>
                             </td>
                             <td>
-                                <span class="quantity-square">{{ $item->qty }}</span>
+                                <span class="quantity-square cart-font-color">{{ $item->qty }}</span>
                             </td>
                         </tr>
                     @endforeach
@@ -126,7 +126,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 cart-font-color">
                     <span>Total</span>
                 </div>
                 <div class="col-md-4 offset-md-4">
@@ -137,7 +137,7 @@
             @if (!session()->has('coupon'))
                 <form action="{{ route('coupon.store') }}" method="POST">
                     @csrf()
-                    <label for="coupon_code">Have a coupon ?</label>
+                    <label for="coupon_code cart-font-color">Have a coupon ?</label>
                     <input type="text" name="coupon_code" id="coupon" class="form-control my-input" placeholder="123456" required>
                     <button type="submit" class="btn btn-success custom-border-success btn-block">Apply Coupon</button>
                 </form>
