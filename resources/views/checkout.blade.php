@@ -89,7 +89,7 @@
                     <span class="light-text">Subtotal</span>
                 </div>
                 <div class="col-md-4 offset-md-4">
-                    <span class="light-text" style="display: inline-block">R{{ format($subtotal) }}</span>
+                    <span class="light-text" style="display: inline-block">R{{ format($finalSubtotal) }}</span>
                 </div>
             </div>
             @if (session()->has('coupon'))

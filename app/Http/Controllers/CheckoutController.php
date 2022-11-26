@@ -24,12 +24,14 @@ class CheckoutController extends Controller
             $discount = session('coupon')['discount'] ?? 0;
             $newSubtotal = $subtotal - $discount > 0 ? $subtotal - $discount : 0;
             $tax = $newSubtotal * (config('cart.tax') / 100);
-            $total = $tax + $newSubtotal;
+            $finalSubtotal = $newSubtotal - $tax;
+            $total = $finalSubtotal + $tax;
             return view('checkout')->with([
                 'subtotal' => $subtotal,
                 'discount' => $discount,
                 'newSubtotal' => $newSubtotal,
                 'total' => $total,
+                'finalSubtotal' => $finalSubtotal,
                 'tax' => $tax
             ]);
         }
@@ -87,13 +89,15 @@ class CheckoutController extends Controller
             $newSubtotal = 0;
         }
         $newTax = $newSubtotal * $tax;
-        $newTotal = $newSubtotal + $newTax;
+        $finalSubtotal = $newSubtotal - $tax;
+        $newTotal = $finalSubtotal + $newTax;
         return collect([
             'tax' => $tax,
             'discount' => $discount,
             'code' => $code,
             'newSubtotal' => $newSubtotal,
             'newTax' => $newTax,
+            'finalSubtotal' => $finalSubtotal,
             'newTotal' => $newTotal
         ]);
     }
@@ -111,7 +115,7 @@ class CheckoutController extends Controller
             'billing_phone' => $request->phone,
             'billing_discount' => $this->getNumbers()->get('discount'),
             'billing_discount_code' => $this->getNumbers()->get('code'),
-            'billing_subtotal' => $this->getNumbers()->get('newSubtotal'),
+            'billing_subtotal' => $this->getNumbers()->get('finalSubtotal'),
             'billing_tax' => $this->getNumbers()->get('newTax'),
             'billing_total' => $this->getNumbers()->get('newTotal'),
             'error' => $error

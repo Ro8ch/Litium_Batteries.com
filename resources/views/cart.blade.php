@@ -56,9 +56,6 @@
             <div class="summary">
                 <div class="row">
                     <div class="col-md-8">
-                        <p class="light-text">
-                            
-                        </p>
                     </div>
                     <div class="col-md-3 offset-md-1">
                         <p class="text-right light-text">Subtotal &nbsp; &nbsp;R{{ format(Cart::subtotal()) }}</p>
