@@ -3,22 +3,27 @@
         <div class="footer">
             <div class="row">
                 <div class="col-md-4">
-                    <a href="#" class="footer-link">Privacy policy</a><br>
-                    <a href="#" class="footer-link">Term and conditions</a><br>
-                </div>
-                <div class="col-md-4">
                     <h3>
                         Business hours:
                     </h3>
                     <p>Monday - Friday</p>
                     <p>9:00 - 16:00</p>
+                    
                 </div>
                 <div class="col-md-4">
                     <h3>
                         Contact Us:
                     </h3>
+                    <p> Corlieus du Toit
                     <p>Phone: +27 79 971 8306</p>
-                    <p>Email: </p>
+                    <p>Email: Corlieus@lithium-cells.co.za</p>
+                    <p> Chanro du Toit
+                    <p>Phone: +27 79 429 6000</p>
+                    <p>Email: Chanro@lithium-cells.co.za</p>
+                </div>
+                <div class="col-md-4">
+                <!--<a href="#" class="footer-link">Privacy policy</a><br>
+                    <a href="{{ route('terms.index') }}" class="footer-link">Term and conditions</a><br>-->
                 </div>
             </div>
         </div>

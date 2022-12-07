@@ -25,9 +25,15 @@ Route::patch('/cart/{product}', 'CartController@update')->name('cart.update');
 // checkout
 Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
 Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
+#Route::get('/eft', 'CheckoutController@eft')->name('checkout.eft');
+#Route::post('/eft', function () {return view('eft');})->name('eft');
+#Route::post('/eft', 'CheckoutController@eft')->name('checkout.eft');
+#Route::get('/payfast', 'CheckoutController@store')->name('checkout.payfast');
+#Route::post('/payfast', 'CheckoutController@store')->name('checkout.payfast');
 Route::get('/guest-checkout', 'CheckoutController@index')->name('checkout.guest');
 
 // Payment
+Route::post('/eft', 'eftController@index')->name('eft.index');
 Route::get('confirmpayment', 'PaymentController@confirmpayment')->name('confirmpayment');
 Route::get('/payfast/success','PaymentController@success')->name('payment.success');
 Route::get('/payfast/cancel','PaymentController@cancel')->name('payment.cancel');
@@ -44,7 +50,9 @@ Route::get('/login/{provider}/callback', 'Auth\LoginController@handleProviderCal
 
 // How to route
 Route::get('/how_to', 'how_toController@index')->name('how_to.index');
-
+//Terms and Conditions
+Route::get('/terms', 'termsController@index')->name('terms.index');
+// Home page
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin'], function () {

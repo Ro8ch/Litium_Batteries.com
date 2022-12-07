@@ -58,9 +58,9 @@
                     <div class="col-md-8">
                     </div>
                     <div class="col-md-3 offset-md-1">
-                        <p class="text-right light-text">Subtotal &nbsp; &nbsp;R{{ format(Cart::subtotal()) }}</p>
-                        <p class="text-right light-text">Tax(15%) &nbsp; &nbsp; R{{ format(Cart::tax()) }}</p>
-                        <p class="text-right cart-font-color">Total &nbsp; &nbsp; R{{ format(Cart::total()) }}</p>
+                        <!--<p class="text-right light-text">Subtotal &nbsp; &nbsp;R{{ format(Cart::subtotal()) }}</p>
+                        <p class="text-right light-text">Tax(15%) &nbsp; &nbsp; R{{ format(Cart::tax()) }}</p>-->
+                        <p class="text-right cart-font-color">Total &nbsp; &nbsp; R{{ format(Cart::subtotal()) }}</p>
                     </div>
                 </div>
             </div>

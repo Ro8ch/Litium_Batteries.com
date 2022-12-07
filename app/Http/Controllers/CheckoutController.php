@@ -7,7 +7,6 @@ use App\Http\Requests\CheckoutRequest;
 use Cart;
 use App\Order;
 use App\OrderProduct;
-use Cartalyst\Stripe\Stripe;
 use Mail;
 use App\Mail\OrderPlaced;
 use App\Product;
@@ -46,37 +45,7 @@ class CheckoutController extends Controller
         $contents = Cart::instance('default')->content()->map(function ($item) {
             return $item->model->slug . ', ' . $item->qty;
         })->values()->toJson();
-
-        try {
-            // $stripe = Stripe::make('api_key');
- 
-            // $charge = $stripe->charges()->create([
-            //     'amount' => Cart::instance('default')->total(),
-            //     'currency' => 'USD',
-            //     'source' => $request->stripeToken,
-            //     'description' => 'Order',
-            //     'receipt_email' => $request->email,
-            //     'metadata' => [
-            //         'contents' => $contents,
-            //         'quantity' => Cart::instance('default')->count(),
-            //         'discount' => session()->has('coupon') ? collect(session('coupon')->toJson) : null,
-            //     ],
-            // ]);
-           return Payfast::payment(Cart::instance('default')->total(), 'oRDER #1');
-
-
-            $order = $this->insertIntoOrdersTable($request, null);
-
-            // SUCCESSFUL
-            $this->decreaseQuantities();
-            Mail::to(env('PAYFAST_MAIL'))->send(new OrderPlaced($order));
-            Cart::instance('default')->destroy();
-            session()->forget('coupon');
-            return redirect()->route('welcome')->with('success', 'Your order is completed successfully!');
-        } catch (Exception $e) {
-            $this->insertIntoOrdersTable($request, $e->getMessage());
-            return back()->withError('Error ' . $e->getMessage());
-        }
+        
     }
 
     private function getNumbers()
@@ -148,5 +117,44 @@ class CheckoutController extends Controller
             }
         }
         return false;
+    }
+
+    private function payfast()
+    {
+        $PayFastTotal = Cart::instance('default')->total();
+        window.print("<p>" + $PayFastTotal + "</p>");
+
+        
+        //Successful
+        #Mail::to(env('PAYFAST_MAIL'))->send(new OrderPlaced($order));
+        // Cart::instance('default')->destroy();
+        // session()->forget('coupon');
+        // return redirect()->route('welcome')->with('success', 'Your order is completed successfully!');
+
+        // try{
+        //     $order = $this->insertIntoOrdersTable($request, null);
+        //     $this->decreaseQuantities();
+        //     Cart::instance('default')->destroy();
+        //     session()->forget('coupon');
+        //     }
+        //     catch (Exception $e) {
+        //     $this->insertIntoOrdersTable($request, $e->getMessage());
+        //     return back()->withError('Error ' . $e->getMessage());
+        //     };
+    }
+
+    private function eft()
+    {
+        #try{
+        #$order = $this->insertIntoOrdersTable($request, null);
+        #$this->decreaseQuantities();
+        #Cart::instance('default')->destroy();
+        #session()->forget('coupon');
+        #}
+        #catch (Exception $e) {
+        #$this->insertIntoOrdersTable($request, $e->getMessage());
+        #return back()->withError('Error ' . $e->getMessage());
+        #}
+        return view('eft');
     }
 }

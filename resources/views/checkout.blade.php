@@ -9,7 +9,8 @@
             <hr>
             <h1 class="cart-font-color" style="font-size: 1.5em">Checkout</h1>
             <hr>
-            <h3 class="cart-font-color" style="font-size: 1.2em; margin-bottom: 1.6em; cart-font-color">Billing details</h3>
+            <h1 class="cart-font-color" style="font-size: 1.5em">STEP 1:</h1>
+            <h3 class="cart-font-color" style="font-size: 1.2em; margin-bottom: 1.6em; cart-font-color">Personal details</h3>
             <form action="{{ route('checkout.store') }}" method="POST">
                 @csrf()
                 <div class="form-group">
@@ -52,8 +53,9 @@
                         <input type="text" name="phone" class="form-control my-input" required>
                     </div>
                 </div>
-                <h2 style="margin-top:1em; margin-bottom:1em;" class= "cart-font-color">Pay here:</h2>
-                <button type="submit" class="btn btn-success custom-border-success btn-block">{{ route('confirmpayment') }}</button>
+                <h1 class="cart-font-color" style="font-size: 1.5em">STEP 2:</h1>
+                <h5 style="margin-top:1em; margin-bottom:1em;" class= "cart-font-color">I confirm that above information is correct.</h5>
+                <button type="submit" class="btn btn-success custom-border-success btn-block">Confirm Order</button>
             </form>
         </div>
         <div class="col-md-5 offset-md-1 cart-font-color">
@@ -84,14 +86,14 @@
                 </tbody>
             </table>
             <hr>
-            <div class="row">
+            <!--<div class="row">
                 <div class="col-md-4">
                     <span class="light-text">Subtotal</span>
                 </div>
                 <div class="col-md-4 offset-md-4">
                     <span class="light-text" style="display: inline-block">R{{ format($finalSubtotal) }}</span>
                 </div>
-            </div>
+            </div>-->
             @if (session()->has('coupon'))
                 <div class="row">
                     <div class="col-md-4">
@@ -108,23 +110,23 @@
                         <span class="light-text" style="display: inline">- R{{ format($discount) }}</span>
                     </div>
                 </div><hr>
-                <div class="row">
+                <!--<div class="row">
                     <div class="col-md-4">
                         <span class="light-text">New Subtotal</span>
                     </div>
                     <div class="col-md-4 offset-md-4">
                         <span class="light-text" style="display: inline-block">R{{ format($newSubtotal) }}</span>
                     </div>
-                </div>
+                </div>-->
             @endif
-            <div class="row">
+            <!--<div class="row">
                 <div class="col-md-4">
                     <span class="light-text">Tax(15%)</span>
                 </div>
                 <div class="col-md-4 offset-md-4">
                     <span class="light-text" style="display: inline-block">R{{ format($tax) }}</span>
                 </div>
-            </div>
+            </div>-->
             <div class="row">
                 <div class="col-md-4 cart-font-color">
                     <span>Total</span>
@@ -142,6 +144,25 @@
                     <button type="submit" class="btn btn-success custom-border-success btn-block">Apply Coupon</button>
                 </form>
             @endif
+            <h1 class="cart-font-color" style="font-size: 1.5em">STEP 3:</h1>
+            <h2 style="margin-top:1em; margin-bottom:1em;" class= "cart-font-color">Pay here:</h2>
+            <form action="{{ route('eft.index') }}" method="post">
+            @csrf()
+                <button type="submit" class="btn btn-success custom-border-success btn-block">Pay here with EFT</button>
+            </form>
+            <!--<form action="{{'checkout.payfast'}}" method="post">
+            <form action="https://www.payfast.co.za/eng/process" method="post">-->
+            <form action="https://sandbox.payfast.co.za​/eng/process" method="post">
+            @csrf()
+                <input type="hidden" name="merchant_id" value="{{env('PF_MERCHANT_ID')}}">
+                <input type="hidden" name="merchant_key" value="{{env('PF_MERCHANT_KEY')}}">
+                <input type="hidden" name="merchant_key" value="{{env('PF_RETURN_URL')}}">
+                <input type="hidden" name="merchant_key" value="{{env('PF_CANCEL_URL')}}">
+                <input type="hidden" name="email_confirmation" value="1">
+                <input type="hidden" name="amount" value="{{ format($total) }}">
+                <input type="hidden" name="item_name" value="Test Product">
+                <button type="submit" class="btn btn-success custom-border-success btn-block">Pay here with PayFast</button>
+            </form>
         </div>
     </div>
 </div>
