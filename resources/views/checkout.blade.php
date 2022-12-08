@@ -110,15 +110,23 @@
                         <span class="light-text" style="display: inline">- R{{ format($discount) }}</span>
                     </div>
                 </div><hr>
-                <!--<div class="row">
+                <div class="row">
                     <div class="col-md-4">
                         <span class="light-text">New Subtotal</span>
                     </div>
                     <div class="col-md-4 offset-md-4">
                         <span class="light-text" style="display: inline-block">R{{ format($newSubtotal) }}</span>
                     </div>
-                </div>-->
+                </div>
             @endif
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="light-text">Subtotal</span>
+                </div>
+                <div class="col-md-4 offset-md-4">
+                    <span class="light-text" style="display: inline-block">R{{ format($newSubtotal) }}</span>
+                </div>
+            </div>
             <!--<div class="row">
                 <div class="col-md-4">
                     <span class="light-text">Tax(15%)</span>
@@ -127,12 +135,21 @@
                     <span class="light-text" style="display: inline-block">R{{ format($tax) }}</span>
                 </div>
             </div>-->
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="light-text">shipping</span>
+                </div>
+                <div class="col-md-4 offset-md-4">
+                    <span class="light-text" style="display: inline-block">R{{ format($shipping) }}</span>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-4 cart-font-color">
                     <span>Total</span>
                 </div>
                 <div class="col-md-4 offset-md-4">
-                    <span class="text-right" style="display: inline-block">R{{ format($total) }}</span>
+                    <span class="text-right" style="display: inline-block">R{{ format($finalSubtotal) }}</span>
                 </div>
             </div>
             <hr>
@@ -144,25 +161,6 @@
                     <button type="submit" class="btn btn-success custom-border-success btn-block">Apply Coupon</button>
                 </form>
             @endif
-            <h1 class="cart-font-color" style="font-size: 1.5em">STEP 3:</h1>
-            <h2 style="margin-top:1em; margin-bottom:1em;" class= "cart-font-color">Pay here:</h2>
-            <form action="{{ route('eft.index') }}" method="post">
-            @csrf()
-                <button type="submit" class="btn btn-success custom-border-success btn-block">Pay here with EFT</button>
-            </form>
-            <!--<form action="{{'checkout.payfast'}}" method="post">
-            <form action="https://www.payfast.co.za/eng/process" method="post">-->
-            <form action="https://sandbox.payfast.co.za​/eng/process" method="post">
-            @csrf()
-                <input type="hidden" name="merchant_id" value="{{env('PF_MERCHANT_ID')}}">
-                <input type="hidden" name="merchant_key" value="{{env('PF_MERCHANT_KEY')}}">
-                <input type="hidden" name="merchant_key" value="{{env('PF_RETURN_URL')}}">
-                <input type="hidden" name="merchant_key" value="{{env('PF_CANCEL_URL')}}">
-                <input type="hidden" name="email_confirmation" value="1">
-                <input type="hidden" name="amount" value="{{ format($total) }}">
-                <input type="hidden" name="item_name" value="Test Product">
-                <button type="submit" class="btn btn-success custom-border-success btn-block">Pay here with PayFast</button>
-            </form>
         </div>
     </div>
 </div>

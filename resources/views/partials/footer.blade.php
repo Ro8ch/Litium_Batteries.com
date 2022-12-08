@@ -22,8 +22,8 @@
                     <p>Email: Chanro@lithium-cells.co.za</p>
                 </div>
                 <div class="col-md-4">
-                <!--<a href="#" class="footer-link">Privacy policy</a><br>
-                    <a href="{{ route('terms.index') }}" class="footer-link">Term and conditions</a><br>-->
+                <h3>Privacy policy</h3>
+                    <a href="{{ route('terms.index') }}" class="footer-link">Term and conditions</a><br>
                 </div>
             </div>
         </div>

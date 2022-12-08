@@ -22,16 +22,23 @@ class CheckoutController extends Controller
             $subtotal = Cart::instance('default')->subtotal() ?? 0;
             $discount = session('coupon')['discount'] ?? 0;
             $newSubtotal = $subtotal - $discount > 0 ? $subtotal - $discount : 0;
-            $tax = $newSubtotal * (config('cart.tax') / 100);
-            $finalSubtotal = $newSubtotal - $tax;
-            $total = $finalSubtotal + $tax;
+            #$tax = $newSubtotal * (config('cart.tax') / 100);
+            $tax = $newSubtotal * 0;
+            $total = $newSubtotal + $tax;
+            if($total <= 2500){
+                $shipping = 140;
+            }else {
+                $shipping = $total/100*1.4;
+            }
+            $finalSubtotal = $total + $shipping;
             return view('checkout')->with([
                 'subtotal' => $subtotal,
                 'discount' => $discount,
                 'newSubtotal' => $newSubtotal,
                 'total' => $total,
                 'finalSubtotal' => $finalSubtotal,
-                'tax' => $tax
+                'tax' => $tax,
+                'shipping' => $shipping
             ]);
         }
         return redirect()->route('cart.index')->withError('You have nothing in your cart , please add some products first');
@@ -45,7 +52,19 @@ class CheckoutController extends Controller
         $contents = Cart::instance('default')->content()->map(function ($item) {
             return $item->model->slug . ', ' . $item->qty;
         })->values()->toJson();
-        
+
+        try{
+            $order = $this->insertIntoOrdersTable($request, null);
+            $this->decreaseQuantities();
+            Cart::instance('default')->destroy();
+            session()->forget('coupon');
+        }
+        catch (Exception $e) {
+            $this->insertIntoOrdersTable($request, $e->getMessage());
+            return back()->withError('Error ' . $e->getMessage());
+        }
+        return redirect()->route('payment.index');
+
     }
 
     private function getNumbers()
@@ -89,6 +108,8 @@ class CheckoutController extends Controller
             'billing_total' => $this->getNumbers()->get('newTotal'),
             'error' => $error
         ]);
+        $orderNumber = Order::latest('id')->first();
+        session()->put('orderNumber',$orderNumber);
 
         foreach (Cart::instance('default')->content() as $item) {
             OrderProduct::create([
@@ -119,42 +140,4 @@ class CheckoutController extends Controller
         return false;
     }
 
-    private function payfast()
-    {
-        $PayFastTotal = Cart::instance('default')->total();
-        window.print("<p>" + $PayFastTotal + "</p>");
-
-        
-        //Successful
-        #Mail::to(env('PAYFAST_MAIL'))->send(new OrderPlaced($order));
-        // Cart::instance('default')->destroy();
-        // session()->forget('coupon');
-        // return redirect()->route('welcome')->with('success', 'Your order is completed successfully!');
-
-        // try{
-        //     $order = $this->insertIntoOrdersTable($request, null);
-        //     $this->decreaseQuantities();
-        //     Cart::instance('default')->destroy();
-        //     session()->forget('coupon');
-        //     }
-        //     catch (Exception $e) {
-        //     $this->insertIntoOrdersTable($request, $e->getMessage());
-        //     return back()->withError('Error ' . $e->getMessage());
-        //     };
-    }
-
-    private function eft()
-    {
-        #try{
-        #$order = $this->insertIntoOrdersTable($request, null);
-        #$this->decreaseQuantities();
-        #Cart::instance('default')->destroy();
-        #session()->forget('coupon');
-        #}
-        #catch (Exception $e) {
-        #$this->insertIntoOrdersTable($request, $e->getMessage());
-        #return back()->withError('Error ' . $e->getMessage());
-        #}
-        return view('eft');
-    }
 }

@@ -30,22 +30,17 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'stripe' => [
-        'model' => App\User::class,
-        'key' => env('STRIPE_KEY'),
-        'secret' => env('STRIPE_SECRET'),
-    ],
-
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
         'redirect' => env('GITHUB_CALLBACK'),
     ],
 
-    'facebook' => [
-        'client_id' => env('FACEBOOK_CLIENT_ID'),
-        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => env('FACEBOOK_CALLBACK'),
+    'payfast' => [
+        'PF_MERCHANT_ID' => env('PF_MERCHANT_ID'),
+        'PF_MERCHANT_KEY' => env('PF_MERCHANT_KEY'),
+        'PF_RETURN_URL' => env('PF_RETURN_URL'),
+        'PF_CANCEL_URL' => env('PF_CANCEL_URL'),
     ],
 
 ];

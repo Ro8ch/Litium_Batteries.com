@@ -4,6 +4,8 @@ use App\CountryVisit;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use TCG\Voyager\Facades\Voyager;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CheckoutController;
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware('admin');
 
@@ -25,19 +27,19 @@ Route::patch('/cart/{product}', 'CartController@update')->name('cart.update');
 // checkout
 Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
 Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
-#Route::get('/eft', 'CheckoutController@eft')->name('checkout.eft');
-#Route::post('/eft', function () {return view('eft');})->name('eft');
-#Route::post('/eft', 'CheckoutController@eft')->name('checkout.eft');
-#Route::get('/payfast', 'CheckoutController@store')->name('checkout.payfast');
-#Route::post('/payfast', 'CheckoutController@store')->name('checkout.payfast');
 Route::get('/guest-checkout', 'CheckoutController@index')->name('checkout.guest');
 
 // Payment
 Route::post('/eft', 'eftController@index')->name('eft.index');
 Route::get('confirmpayment', 'PaymentController@confirmpayment')->name('confirmpayment');
-Route::get('/payfast/success','PaymentController@success')->name('payment.success');
-Route::get('/payfast/cancel','PaymentController@cancel')->name('payment.cancel');
+Route::get('success','PaymentController@success')->name('payment.success');
+Route::get('cancel','PaymentController@cancel')->name('payment.cancel');
+Route::post('/payment', 'PaymentController@index')->name('payment.index');
+Route::get('/payment', 'PaymentController@index')->name('payment.index');
 
+//Order
+Route::get('Order', [PaymentController::class, 'index']);
+Route::get('Order', [CheckoutController::class, 'insertIntoOrdersTable']);
 
 // coupon
 Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
