@@ -18,5 +18,5 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('images/logo.ico') }}" rel="shortcut icon" >
+    <link href="{{ asset('storage/images/logo.ico') }}" rel="shortcut icon" >
 </head>
