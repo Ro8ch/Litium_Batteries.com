@@ -41,6 +41,7 @@ class CheckoutController extends Controller
                 'shipping' => $shipping
             ]);
         }
+        
         return redirect()->route('cart.index')->withError('You have nothing in your cart , please add some products first');
     }
 
@@ -108,8 +109,6 @@ class CheckoutController extends Controller
             'billing_total' => $this->getNumbers()->get('newTotal'),
             'error' => $error
         ]);
-        $orderNumber = Order::latest('id')->first();
-        session()->put('orderNumber',$orderNumber);
 
         foreach (Cart::instance('default')->content() as $item) {
             OrderProduct::create([
